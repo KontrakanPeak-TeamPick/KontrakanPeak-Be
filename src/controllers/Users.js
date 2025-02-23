@@ -2,7 +2,7 @@ const userModel = require("../models/UserModels"); // Ubah nama import
 
 const getUsers = async (req, res) => {
   try {
-    const users = await userModel.findAll(); // Gunakan userModel, bukan user
+    const users = await userModel.findAll();
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -11,7 +11,7 @@ const getUsers = async (req, res) => {
 
 const Login = async (req, res) => {
   try {
-    const foundUser = await userModel.findOne({ // Gunakan nama lain untuk hasil query
+    const foundUser = await userModel.findOne({ 
       where: {
         email: req.body.email
       }

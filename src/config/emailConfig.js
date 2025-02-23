@@ -3,9 +3,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-console.log("SMTP Config:", process.env.SMTP_HOST, process.env.SMTP_PORT, process.env.SMTP_USER, process.env.SMTP_PASS);
-
-
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
@@ -15,17 +12,24 @@ const transporter = nodemailer.createTransport({
       pass: "uundhuevwmghciao",
   },
   tls: {
-    rejectUnauthorized: false, // Tambahkan ini untuk mengatasi SSL error
+    rejectUnauthorized: false, 
   },
 });
 
-const sendOtpEmail = async (email, otp) => {
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Your OTP Code",
-    text: `Your OTP code is: ${otp}`,
-  });
-};
+async function sendOtpEmail(email, otp) {
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your OTP Code",
+      text: `nih bang otpnya cuma 5 menit ya: ${otp}`,
+    });
+    return true; // ✅ Tanda sukses
+  } catch (error) {
+    console.error("Failed to send OTP email:", error);
+    return false; // ❌ Tanda gagal
+  }
+}
+
 
 module.exports = sendOtpEmail;

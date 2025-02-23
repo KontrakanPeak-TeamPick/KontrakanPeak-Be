@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("./src/config/db");
-const authRoutes = require("./src/routes/authRoutes");
 const router = require("./src/routes/index");
 
 require("dotenv").config();
@@ -23,7 +22,6 @@ async function connectDB() {
     }
 }
 
-// Panggil fungsi connectDB()
 connectDB();
 
 app.use(router);
