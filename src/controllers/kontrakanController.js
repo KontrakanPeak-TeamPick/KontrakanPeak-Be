@@ -5,20 +5,17 @@ const UserKontrakan = require("../models/MemberModel");
 
 const createKontrakan = async (req, res) => {
   try {
-    console.log("User data from request:", req.user); // Debugging
+    console.log("User data from request:", req.user); 
   
-
     if (!req.user || !req.user.id) {
       return res.status(400).json({ message: "User ID not found" });
     }
     
-
-
     const { name, address, masaKontrak, wifi_ssid, wifi_password } = req.body;
     const kontrakanId = uuidv4();
-    const user_id = req.user.id; // Ambil user_id setelah pengecekan
+    const user_id = req.user.id; 
 
-    // Simpan kontrakan ke database
+  
     const newKontrakan = await Kontrakan.create({
       id: kontrakanId,
       name,
@@ -26,7 +23,6 @@ const createKontrakan = async (req, res) => {
       masa_kontrak: masaKontrak,
     });
 
-    // Simpan informasi WiFi jika ada
     if (wifi_ssid && wifi_password) {
       await Wifi.create({
         kontrakan_id: newKontrakan.id,
