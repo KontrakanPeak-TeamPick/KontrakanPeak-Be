@@ -38,7 +38,7 @@ const register = async (req, res) => {
   }
 };
 
-// 
+
 const login = async (req, res) => {
   try {
     const { email, otp } = req.body;

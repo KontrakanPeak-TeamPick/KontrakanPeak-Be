@@ -7,9 +7,8 @@ const Users = db.define(
   "users",
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true
     },
     username: {
       type: DataTypes.STRING,
@@ -18,15 +17,11 @@ const Users = db.define(
     email: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
     }
   },
   {
     freezeTableName: true
   }
 );
-
+  
 module.exports = Users;

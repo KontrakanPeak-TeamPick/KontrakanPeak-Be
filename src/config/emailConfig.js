@@ -27,7 +27,7 @@ async function sendOtpEmail(email, otp) {
     return true; // ✅ Tanda sukses
   } catch (error) {
     console.error("Failed to send OTP email:", error);
-    return false; // ❌ Tanda gagal
+    return false;
   }
 }
 

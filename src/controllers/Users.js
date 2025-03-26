@@ -1,4 +1,4 @@
-const userModel = require("../models/UserModels"); // Ubah nama import
+const userModel = require("../models/UserModels");
 
 const getUsers = async (req, res) => {
   try {
@@ -33,7 +33,7 @@ const Login = async (req, res) => {
       expiresIn: "1d",
     });
 
-    await foundUser.update({ refreshToken }); // Perbaiki pemanggilan update
+    await foundUser.update({ refreshToken }); 
 
     res.json({ accesstoken });
 
