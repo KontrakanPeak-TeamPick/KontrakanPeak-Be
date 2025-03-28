@@ -6,7 +6,8 @@ const Members = db.define(
   {
     id: {
       type: DataTypes.STRING,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4, 
     },
     user_id: {
       type: DataTypes.STRING,

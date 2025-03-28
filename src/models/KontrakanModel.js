@@ -1,16 +1,16 @@
 const { DataTypes } = require("sequelize");
 const db = require("../config/db");
 const Wifi = require("./WifiModel");
-const { v4: uuidv4 } = require("uuid");
+const KontakInfo = require("./KontakInfgoModel"); // Pastikan ini benar
 
 const Kontrakans = db.define(
   "kontrakans",
   {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4, 
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      allowNull : false,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -24,14 +24,6 @@ const Kontrakans = db.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    kontak_info: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    wifi: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     jadwal: {
       type: DataTypes.DATE,
       allowNull: true,
@@ -42,7 +34,12 @@ const Kontrakans = db.define(
   }
 );
 
+// Relasi dengan Wifi
 Kontrakans.hasMany(Wifi, { foreignKey: "kontrakan_id" });
 Wifi.belongsTo(Kontrakans, { foreignKey: "kontrakan_id" });
+
+// Relasi dengan KontakInfo
+Kontrakans.hasMany(KontakInfo, { foreignKey: "kontrakan_id" });
+KontakInfo.belongsTo(Kontrakans, { foreignKey: "kontrakan_id" });
 
 module.exports = Kontrakans;
