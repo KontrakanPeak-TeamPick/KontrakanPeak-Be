@@ -16,4 +16,4 @@ const PaymentStatuses = db.define(
     },
 );
 
-module.exports = Payments;
+module.exports = PaymentStatuses;

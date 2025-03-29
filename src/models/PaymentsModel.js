@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const db = require("../config/db");
+const PaymentStatuses = require("./PaymentStatusesModel");
 
 const Payments = db.define(
   "payments",
@@ -9,7 +10,7 @@ const Payments = db.define(
       primaryKey: true
     },
     kontrakan_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: "kontrakans",
@@ -51,5 +52,7 @@ const Payments = db.define(
     freezeTableName: true
   }
 );
+
+Payments.belongsTo(PaymentStatuses, { foreignKey: "status_id" });
 
 module.exports = Payments;

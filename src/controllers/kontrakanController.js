@@ -5,6 +5,10 @@ const UserKontrakan = require("../models/MemberModel");
 const KontakInfo = require("../models/KontakInfgoModel");
 const GroupLink = require("../models/GroupLinkModel");
 
+const generateKodeUnik = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString(); // 6 digit angka acak
+};
+
 const createKontrakan = async (req, res) => {
   try {
 

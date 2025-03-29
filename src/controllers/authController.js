@@ -113,14 +113,12 @@ const login2 = async (req, res) => {
     if (!kontrakan) {
       return res.status(404).json({ message: "Kode kontrakan tidak valid" });
     }
-
-    // Cek apakah user sudah terdaftar dalam kontrakan ini
+    
     let userKontrakan = await UserKontrakan.findOne({
       where: { user_id: user.id, kontrakan_id: kontrakan.id },
     });
 
     if (!userKontrakan) {
-      // Jika belum, tambahkan sebagai anggota baru dengan role "member"
       userKontrakan = await UserKontrakan.create({
         user_id: user.id,
         kontrakan_id: kontrakan.id,
